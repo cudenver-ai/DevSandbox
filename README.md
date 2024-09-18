@@ -34,32 +34,32 @@ Install nvm [install nvm](https://github.com/nvm-sh/nvm)
 
 ### Front End
 
-1. Creating a new project
-   -run: `npm create vite@latest front-end-temp -- --template react`
-
-This command uses Vite's project creation tool to set up a new React app in a directory called front-end-temp. Try it, create a separate react app with a different name.
-
-2. Navigate to the Project Directory:
+1. Navigate to the Project Directory:
 
    - run: `cd front-end-temp`
 
-3. Install Depencies:
+2. Install Depencies:
 
    - run: `npm install`
 
-4. Start the development server:
+3. Start the development server:
 
    - run`npm run dev`
 
-5. Project Structure:
+4. Project Structure:
 
    src/: Contains your React components and application code.
 
-6. Why we like Vite
+5. Why we like Vite
 
 Fast Development Server: Quick startup times and hot module replacement.
 Minimal Configuration: Works out of the box with simple defaults.
 Modern Features: Supports ES6 modules and modern JavaScript features.
+
+6. Create your own project
+   -run: `npm create vite@latest front-end-temp -- --template react`
+
+This command uses Vite's project creation tool to set up a new React app in a directory called front-end-temp. Try it, create a separate react app with a different name.
 
 ### Back End
 
