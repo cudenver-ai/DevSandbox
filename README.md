@@ -36,51 +36,118 @@ Install nvm [install nvm](https://github.com/nvm-sh/nvm)
 
 1. Navigate to the Project Directory:
 
-   - run: `cd front-end-temp`
+   - `cd front-end-temp`
 
 2. Install Depencies:
 
-   - run: `npm install`
+   - `npm install`
 
 3. Start the development server:
 
-   - run`npm run dev`
+   - `npm run dev`
 
-4. Project Structure:
+4. Project Structure: The front-end code primarily resides in the src/ folder, which contains the following key files:
 
-   src/: Contains your React components and application code.
+- `src/App.jsx`: The main entry point for the React application.
+- `src/CreateItem.jsx`: Component that handles item creation. -`src/UsersList.jsx`: Component that displays a list of users.
 
-5. Why we like Vite
+5. Why We Use Vite:
 
-Fast Development Server: Quick startup times and hot module replacement.
-Minimal Configuration: Works out of the box with simple defaults.
-Modern Features: Supports ES6 modules and modern JavaScript features.
+- Fast Development Server: Quick startup times and hot module replacement.
+- Minimal Configuration: Works with simple defaults and doesn't require extensive setup.
+- Modern Features: Supports ES6 modules and modern JavaScript features.
 
-6. Create your own project
-   -run: `npm create vite@latest front-end-temp -- --template react`
+6. Creating a New React Project with Vite:
+
+To create your own React project with Vite, you can run:
+
+- `npm create vite@latest front-end-temp -- --template react`
 
 This command uses Vite's project creation tool to set up a new React app in a directory called front-end-temp. Try it, create a separate react app with a different name.
 
 ### Back End
 
-- Try explaining how the backend works with a similar format of how the front end is explained
+Back-End Setup
 
-### Running the app:
+The back-end is built using Flask. The API serves the front-end and is set to run on port 5000 by default.
 
-Back-End:
+1. Navigate to the Back-End Directory:
 
-1. Make sure the backend (Flask) is running on a separate port (I have it set to port 5000):
+- `cd back-end`
 
-2. cd into back-end/
+2. Run the Flask Application:
 
-- run: `python app.py`
+- `flask run`
 
-Front-End:
+This will start the Flask server on `http://localhost:5000/`.
 
-3. cd into back-end/
+3. API Endpoints:
 
-- run: `npm run dev`
+   - `/api/users`: Returns a list of users in JSON format.
+   - `/api/items`: Allows creation of new items through a POST request.
+
+You can access the API at `http://localhost:5000/api/<endpoint>`.
+
+### Running the Full App
+
+To run the full stack:
+
+1. Start the Flask Back-End: Make sure the Flask back-end is running on port 5000:
+
+- `python app.py`
+
+2. Start the React Front-End: In another terminal, navigate to the front-end directory and run the Vite development server on port 5173:
+
+- `npm run dev`
+- Flask API: Available at `http://localhost:5000/`.
+- React Front-End: Available at `http://localhost:5173/`.
 
 The Flask API will be available at `http://<localhost>:5000/`
 The React front end will be available at `http://<localhost>:5173/`
 These are just the default ports, feel free to change them
+
+### Key Files
+
+The following are the main files you need to focus on:
+
+#### Front-End (React)
+
+- `src/App.jsx`: The main React component.
+- `src/CreateItem.jsx`: Handles creation of new items via the front-end.
+- `src/UsersList.jsx`: Displays a list of users from the back-end API.
+
+#### Back-End (Flask)
+
+- `app.py`: The main Flask application file that defines the API routes.
+- `config.py`: Contains environment-specific configuration (development/production) for CORS and other settings.
+
+#### Customizing for Your Network
+
+To run the app on your local network (accessible from other devices):
+
+1. Flask Backend:
+
+- In `app.py`, modify the host from `localhost` to `0.0.0.0` to bind to all network interfaces:
+- `app.run(host='0.0.0.0', port=5000)`
+
+2. Vite Front-End:
+
+- In `vite.config.js`, you can modify the `server.host` to `0.0.0.0` so it can be accessed via your local network IP:
+
+```
+{
+    server: {
+      host: '0.0.0.0',
+      port: 5173,
+      proxy: {
+        "/api": {
+          target: "http://<your-ip>:5000",
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
+}
+```
+
+Replace `<your-ip>` with your machine's local IP address (ex: `192.168.0.1`) to access the app from other devices on the same network.
