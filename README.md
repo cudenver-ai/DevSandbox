@@ -1,140 +1,142 @@
+# DevSandbox
+
+Welcome to the DevSandbox! This repository is designed for you to practice and get hands-on experience with the front-end and back-end development tools we use. Whether you're new to development or just looking to refine your skills, this project will help you get familiar with essential tools.
+
+## Getting Started
 ### Prerequisites:
 
 - Python: Version 3.10 or higher.
 - Node.js / npm: You can install this via nvm (Node Version Manager) for better version control. You will need Node.js version 20 or higher
 - nvm: Highly recommend you install nvm to manage your Node.js versions efficiently.
 
-#### Create a Virtual Environment
+### Setting Up the Environment
 
 **Python Virtual Environment**
 
-- `python -m venv .venv`
-- Activate it:
+1. Create a virtual environment:
+  `python -m venv .venv`
+2. Activate it:
   - Windows: `source .venv\Scripts\activate`
   - Linux: `source .venv/bin/activate`
 
 Alternatively, if you use Conda to manage your environments:
 
-**Conda**
+**Conda Environment**
+1. Create the environment:
+  `conda create -n venv python=3.10`
+2. Activate it:
+  `conda activate venv`
 
-- Run: `conda create -n venv python=3.10`
-- Activate it: `conda activate venv`
+### Install Python Dependencies:
 
-#### Install Python Dependencies:
+- Run:
+`pip install -r requirements.txt`
 
-- `pip install -r requirements.txt`
+### Install Node.js / npm Dependencies:
 
-#### Install Node.js / npm Dependencies:
+1. Install Node.js via [nvm](https://github.com/nvm-sh/nvm)
+2. Use the required version of Node:
+  `nvm use node`
 
-Install Node.js [Install npm](https://nodejs.org/en/download/package-manager)
-Install nvm [install nvm](https://github.com/nvm-sh/nvm)
+<hr>
 
-- Run `nvm use node`
-  - To get the latest version of node
+## Front-End Setup
 
-### Front End
+1. Navigate to the front-end directory:
 
-1. Navigate to the Project Directory:
-
-   - `cd front-end-temp`
+  `cd front-end-temp`
 
 2. Install Depencies:
 
-   - `npm install`
+  `npm install`
 
 3. Start the development server:
 
-   - `npm run dev`
+  `npm run dev`
 
-4. Project Structure: The front-end code primarily resides in the src/ folder, which contains the following key files:
+### Front-End Project Structure:
 
-- `src/App.jsx`: The main entry point for the React application.
-- `src/CreateItem.jsx`: Component that handles item creation. -`src/UsersList.jsx`: Component that displays a list of users.
+- src/App.jsx: Main entry point for the React app.
+- src/CreateItem.jsx: Component to handle item creation.
+- src/UsersList.jsx: Displays a list of users.
 
-5. Why We Use Vite:
+### Why We Use Vite:
 
-- Fast Development Server: Quick startup times and hot module replacement.
-- Minimal Configuration: Works with simple defaults and doesn't require extensive setup.
-- Modern Features: Supports ES6 modules and modern JavaScript features.
+- Fast and efficient development server with hot module replacement.
+- Minimal configuration needed.
+- Supports modern JavaScript features and ES6 modules.
 
-6. Creating a New React Project with Vite:
-
-To create your own React project with Vite, you can run:
+#### To create your own React project with Vite:
 
 - `npm create vite@latest front-end-temp -- --template react`
 
 This command uses Vite's project creation tool to set up a new React app in a directory called front-end-temp. Try it, create a separate react app with a different name.
 
-### Back End
+<hr>
 
-Back-End Setup
-
-The back-end is built using Flask. The API serves the front-end and is set to run on port 5000 by default.
+## Back-End Setup (Flask)
 
 1. Navigate to the Back-End Directory:
 
-- `cd back-end`
+  `cd back-end`
 
-2. Run the Flask Application:
+2. Start the Flask application:
 
-- `flask run`
+  `flask run`
 
-This will start the Flask server on `http://localhost:5000/`.
+The Flask server will run on `http://localhost:5000/`.
 
-3. API Endpoints:
+### API Endpoints:
 
-   - `/api/users`: Returns a list of users in JSON format.
-   - `/api/items`: Allows creation of new items through a POST request.
+- `/api/users`: Returns a list of users in JSON format.
+- `/api/items`: Allows creation of new items through a POST request.
 
 You can access the API at `http://localhost:5000/api/<endpoint>`.
 
-### Running the Full App
+<hr>
 
-To run the full stack:
+## Running the Full Stack Application
 
 1. Start the Flask Back-End: Make sure the Flask back-end is running on port 5000:
 
-- `python app.py`
+  `python app.py`
 
-2. Start the React Front-End: In another terminal, navigate to the front-end directory and run the Vite development server on port 5173:
+2. Start the React Front-End: In another terminal, navigate to the front-end directory and start the Vite server:
 
 - `npm run dev`
-- Flask API: Available at `http://localhost:5000/`.
-- React Front-End: Available at `http://localhost:5173/`.
 
-The Flask API will be available at `http://<localhost>:5000/`
-The React front end will be available at `http://<localhost>:5173/`
-These are just the default ports, feel free to change them
+By default:
+- Flask API will be available at `http://localhost:5000/`.
+- React Front-End will be available at `http://localhost:5173/`.
 
 ### Key Files
 
-The following are the main files you need to focus on:
-
 #### Front-End (React)
 
-- `src/App.jsx`: The main React component.
-- `src/CreateItem.jsx`: Handles creation of new items via the front-end.
-- `src/UsersList.jsx`: Displays a list of users from the back-end API.
+- `src/App.jsx`: Main React component.
+- `src/CreateItem.jsx`: Manages item creation.
+- `src/UsersList.jsx`: Displays users fetched from the back-end.
 
 #### Back-End (Flask)
 
-- `app.py`: The main Flask application file that defines the API routes.
-- `config.py`: Contains environment-specific configuration (development/production) for CORS and other settings.
+- `app.py`: Main Flask application with API routes.
+- `config.py`: Environment-specific configurations (CORS, etc.).
 
-#### Customizing for Your Network
+<hr>
 
-To run the app on your local network (accessible from other devices):
+## Customizing for Your Network
 
-1. Flask Backend:
+### Flask Back-End:
 
-- In `app.py`, modify the host from `localhost` to `0.0.0.0` to bind to all network interfaces:
-- `app.run(host='0.0.0.0', port=5000)`
+To make the Flask app accessible on your local network, modify the host in app.py:
 
-2. Vite Front-End:
+  `app.run(host='0.0.0.0', port=5000)`
 
-- In `vite.config.js`, you can modify the `server.host` to `0.0.0.0` so it can be accessed via your local network IP:
+### Vite Front-End:
 
-```
+In vite.config.js, modify the server settings:
+
+```js
 {
     server: {
       host: '0.0.0.0',
@@ -150,4 +152,4 @@ To run the app on your local network (accessible from other devices):
 }
 ```
 
-Replace `<your-ip>` with your machine's local IP address (ex: `192.168.0.1`) to access the app from other devices on the same network.
+Replace <your-ip> with your machine's IP address to access the app from other devices on the same network.
