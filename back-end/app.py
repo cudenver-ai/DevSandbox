@@ -10,14 +10,12 @@ Backend API: Proxied via Vite from /api to http://127.0.0.1:5000/api (or your lo
 
 
 app = Flask(__name__)
-
-if os.environ.get("FLASK_ENV") == "development":
+if os.environ.get("FLASK_DEBUG") == "1":
     app.config.from_object(DevelopmentConfig)
 else:
     app.config.from_object(ProductionConfig)
 
 CORS(app, resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}})
-
 
 # Ensure your routes are prefixed with /api.
 # See if you can move these logic functions to logic.py
@@ -54,8 +52,8 @@ def create_item():
 # Run the Flask app on port 5000
 if __name__ == "__main__":
     # For local development, you can run on localhost
-    app.run(port=5000)
+    app.run(port=5000, debug=os.environ.get("FLASK_DEBUG") == "1")
 
     # If you want to access this from other devices on your network, uncomment the line below
-    # Replace '0.0.0.0' with your machine's local IP address if needed (e.g., 192.168.x.x)
+    # Replace '0.0.0.0' with your machines local IP address if needed (e.g., 192.168.x.x)
     # app.run(host='0.0.0.0', port=5000)
